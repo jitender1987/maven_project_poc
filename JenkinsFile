@@ -7,14 +7,14 @@ pipeline {
                 sh label: '', script: 'mvn clean deploy'
             }
         }
-        stage('Test') {
+        stage('Sonar Scan') {
             steps {
                 sh label: '', script: 'mvn sonar:sonar'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh label: '', script: 'mvn clean deploy'
             }
         }
     }
