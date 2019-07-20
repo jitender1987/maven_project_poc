@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh label: '', script: 'mvn clean deploy'
+                sh label: '', script: 'mvn package'
             }
         }
         stage('Sonar Scan') {
