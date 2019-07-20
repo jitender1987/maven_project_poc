@@ -26,6 +26,17 @@
     <jacoco.plugin.version>0.8.1</jacoco.plugin.version>
   </properties>
 
+         <distributionManagement>
+    	<snapshotRepository>
+     		 <id>NexusTest</id>
+     		 <url>http://localhost:8081/repository/maven-snapshots/</url>
+    	</snapshotRepository>
+    	<repository>
+     		 <id>NexusTest</id>
+      		 <url>http://localhost:8081/repository/maven-releases/</url>
+    	</repository>
+    </distributionManagement>
+         
   <dependencies>
     <!-- Testing dependencies. -->
     <dependency>
