@@ -7,11 +7,21 @@ pipeline {
                 sh label: '', script: 'mvn package'
             }
         }
-        stage('Sonar Scan') {
+        stage("SonarQube analysis") {
+            agent any
             steps {
-                sh label: '', script: 'mvn sonar:sonar'
+              withSonarQubeEnv('sonar') {
+                sh 'mvn clean package sonar:sonar'
+              }
             }
-        }
+          }
+          stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }
         stage('Deploy') {
             steps {
                 sh label: '', script: 'mvn clean deploy'
